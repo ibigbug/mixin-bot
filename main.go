@@ -5,6 +5,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/joho/godotenv"
+
 	"github.com/mixinmessenger/bot-api-go-client"
 
 	"github.com/ibigbug/caoliu/config"
@@ -12,6 +14,7 @@ import (
 )
 
 func main() {
+	godotenv.Load("./scripts/.env")
 	var handler = mixin.Messenger{}
 
 	for {

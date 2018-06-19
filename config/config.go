@@ -11,6 +11,7 @@ func GetEnv(key, dft string) (v string) {
 }
 
 var (
+	ImageDir     = GetEnv("ImageDir", "./assets")
 	ClientID     = GetEnv("ClientId", "62278bf5-04e0-4499-89e6-51f085be0b06")
 	ClientSecret = GetEnv("ClientSecret", "2e9e1dbd5277f89cf853e02478d26657fbe33617bc872547291ec7bef9c01081")
 	PinCode      = GetEnv("PinCode", "264659")

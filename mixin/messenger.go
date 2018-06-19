@@ -6,16 +6,24 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"os"
+	"time"
 
 	"github.com/ibigbug/caoliu/config"
 	"github.com/mixinmessenger/bot-api-go-client"
 )
 
+func init() {
+	rand.Seed(time.Now().Unix())
+}
+
 type Messenger struct{}
 
 func (m Messenger) OnMessage(ctx context.Context, mc *bot.MessageContext, msg bot.MessageView, uid string) error {
-	var image, err = os.Open("./assets/1.jpg")
+	files := ioutil.ReadDir(config.ImageDir)
+	n := rand.Intn(len(files))
+	var image, err = os.Open(files[n].Name())
 	if err != nil {
 		panic(err)
 	}
