@@ -21,9 +21,12 @@ func init() {
 type Messenger struct{}
 
 func (m Messenger) OnMessage(ctx context.Context, mc *bot.MessageContext, msg bot.MessageView, uid string) error {
-	files := ioutil.ReadDir(config.ImageDir)
+	files, err := ioutil.ReadDir(config.ImageDir)
+	if err != nil {
+		return err
+	}
 	n := rand.Intn(len(files))
-	var image, err = os.Open(files[n].Name())
+	image, err := os.Open(files[n].Name())
 	if err != nil {
 		panic(err)
 	}
